@@ -57,6 +57,7 @@ $ netlify login
 4. Deploy to Netlify
 
 ```sh
+$ netlify build
 $ netlify deploy
 ```
 
