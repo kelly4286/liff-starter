@@ -2,16 +2,23 @@ import './index.css';
 import liff from '@line/liff';
 
 document.addEventListener('DOMContentLoaded', function () {
+
+
+
   liff
     .init({
       liffId: '1657419934-Jla7p0KM',
-      withLoginOnExternalBrowser: true, // Enable automatic login process
+      // withLoginOnExternalBrowser: true, // Enable automatic login process
     })
     .then(() => {
       console.log('Success! you can do something with LIFF API here.');
 
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+      
       if (!liff.isInClient()) {
-        alert('Liff is NOT in line app.');
+        console.log('Liff is NOT in line app.');
       }
 
       liff
@@ -31,9 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
               '綁定狀態: ' + (friendshipStatus.friendFlag ? '已加入好友' : '未加入好友') + '<br/>' +
               '<img src="' + pictureUrl + '" height=100 width=100><br/>' +
               '</div>';
-            liff.logout();
-
+            // liff.logout(); // 登出方便測試
           });
+
+          console.log('cookie: ', document.cookie);
         }).catch(function (error) {
           console.log('error', error);
         });
